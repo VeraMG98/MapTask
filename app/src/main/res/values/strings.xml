@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FitRecord</string>
+    <string name="app_name">MapTask</string>
 
-    <string name="toast_not_support_ble">Your device doesn\'t support BLE!</string>
-    <string name="toast_have_to_enable_bt">You have to enable Bluetooth!</string>
-    <string name="toast_bt_enabled">Bluetooth enabled.</string>
-    <string name="toast_pair_ok">Paired successfully.</string>
-    <string name="toast_pair_fail">Failed to pair!</string>
-    <string name="toast_connect_ok">Connected successfully.</string>
+    <string name="toast_not_support_ble">Ваше устройство не поддерживает BLE!</string>
+    <string name="toast_have_to_enable_bt">Вы должны включить Bluetooth!</string>
+    <string name="toast_bt_enabled">Bluetooth включен.</string>
+    <string name="toast_pair_ok">Успещное соединение</string>
+    <string name="toast_pair_fail">Соединение разорвано</string>
+    <string name="toast_connect_ok">Подключено</string>
     <string name="toast_connect_fail">Failed to connect!</string>
     <string name="toast_disconnect_ok">Disconnected.</string>
     <string name="toast_disconnect_fail">Failed to disconnect!</string>
@@ -48,5 +48,9 @@
     <string name="item_stop_scan">Stop Scanning</string>
 
     <string name="notify_measuring">Measuring</string>
+    <string name="results">Результаты</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="todo">TODO</string>
+    <string name="metrs">m</string>
 
 </resources>

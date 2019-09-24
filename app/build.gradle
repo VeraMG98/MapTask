@@ -38,7 +38,13 @@ dependencies {
     implementation 'com.clj.fastble:FastBleLib:2.3.2'
     implementation 'commons-io:commons-io:2.6'
     implementation 'com.opencsv:opencsv:4.2'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.google.android.gms:play-services-location:11.8.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+    
 }
