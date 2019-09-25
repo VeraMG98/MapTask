@@ -46,7 +46,6 @@ public final class MainActivity extends AppCompatActivity {
 
         mBinding.setConnectTransaction(mConnectTransaction);
         mBinding.setHeartRateTransaction(mHeartRateTransaction);
-        mBinding.setAccelerationTransaction(mAccelerationTransaction);
 
         mFabCircle = mBinding.fabProgressCircle;
 
@@ -54,7 +53,6 @@ public final class MainActivity extends AppCompatActivity {
         mMessenger.addHandler(mStateUpdateRequest);
         mMessenger.addHandler(mConnectTransaction);
         mMessenger.addHandler(mHeartRateTransaction);
-        mMessenger.addHandler(mAccelerationTransaction);
 
         initBle();
         mStateUpdateRequest.request();
@@ -63,7 +61,6 @@ public final class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mMessenger.unregister();
     }
 
     @Override
@@ -72,13 +69,11 @@ public final class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem pairMenuItem = menu.findItem(R.id.start_pair);
-        MenuItem exportMenuItem = menu.findItem(R.id.export_data);
 
         pairMenuItem.setOnMenuItemClickListener(menuItem -> {
             requestScan();
             return true;
         });
-        exportMenuItem.setIntent(new Intent(this, ExportDataActivity.class));
         return ans;
     }
 
@@ -160,7 +155,6 @@ public final class MainActivity extends AppCompatActivity {
                     mMacAddress, BytesUtil.toHexStr(mAuthKey), state));
             mBinding.setConnected(state.isEncrypted());
             mHeartRateTransaction.running.set(state.isMeasuringHeartRate());
-            mAccelerationTransaction.running.set(state.isMeasuringAcceleration());
         }
     };
 
@@ -263,6 +257,7 @@ public final class MainActivity extends AppCompatActivity {
                 case Constants.Action.BROADCAST_HEART_RATE:
                     int heartRate = response.getIntExtra(Constants.Extra.HEART_RATE, -1);
                     mBinding.setHeartRate(heartRate);
+                    MapsActivity.update(heartRate + "");
                     Log.i(TAG, "HeartRateTransaction.handleResponse: got heart rate = " + heartRate);
                     break;
                 case Constants.Action.START_HEART_RATE:
@@ -284,60 +279,6 @@ public final class MainActivity extends AppCompatActivity {
             }
         }
     };
-
-
-    private Transaction mAccelerationTransaction = new Transaction() {
-        @Override public String[] getActions() {
-            return new String[] {
-                    Constants.Action.START_ACCELERATION,
-                    Constants.Action.STOP_ACCELERATION,
-                    Constants.Action.BROADCAST_ACCELERATION
-            };
-        }
-
-        @Override public void start() {
-            Intent i = new Intent(MainActivity.this, CommService.class)
-                    .setAction(Constants.Action.START_ACCELERATION);
-            startService(i);
-        }
-
-        @Override public void stop() {
-            Intent i = new Intent(MainActivity.this, CommService.class)
-                    .setAction(Constants.Action.STOP_ACCELERATION);
-            startService(i);
-        }
-
-        @Override public void handleResponse(Intent response) {
-            super.handleResponse(response);
-            int status;
-            switch (response.getAction()) {
-                case Constants.Action.BROADCAST_ACCELERATION:
-                    float x = response.getFloatExtra(Constants.Extra.ACCELERATION_X, 0);
-                    float y = response.getFloatExtra(Constants.Extra.ACCELERATION_Y, 0);
-                    float z = response.getFloatExtra(Constants.Extra.ACCELERATION_Z, 0);
-                    mBinding.setAccelerationX(x);
-                    mBinding.setAccelerationY(y);
-                    mBinding.setAccelerationZ(z);
-                    Log.i(TAG, "AccelerationTransaction.handleResponse: x=" + x + " y=" + y + " z=" + z);
-                    break;
-                case Constants.Action.START_ACCELERATION:
-                    status = response.getIntExtra(Constants.Extra.STATUS, Constants.Status.UNKNOWN);
-                    boolean success = status == Constants.Status.OK;
-                    running.set(success);
-                    if (!success)
-                        Snackbar.make(mBinding.getRoot(), R.string.toast_acceleration_on_failed, Snackbar.LENGTH_SHORT).show();
-                    break;
-                case Constants.Action.STOP_ACCELERATION:
-                    status = response.getIntExtra(Constants.Extra.STATUS, Constants.Status.UNKNOWN);
-                    if (status == Constants.Status.OK)
-                        running.set(false);
-                    else
-                        Snackbar.make(mBinding.getRoot(), R.string.toast_acceleration_off_failed, Snackbar.LENGTH_SHORT).show();
-                    break;
-            }
-        }
-    };
-
 
     public static abstract class Request extends Messenger.MessageHandler {
         public abstract void request();

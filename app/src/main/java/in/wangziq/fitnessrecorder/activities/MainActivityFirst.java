@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-import in.wangziq.fitnessrecorder.MyAdapter;
+import in.wangziq.fitnessrecorder.Adapters.MyAdapter;
 import in.wangziq.fitnessrecorder.R;
 
 
@@ -27,8 +27,6 @@ public class MainActivityFirst extends AppCompatActivity {
         checkPermissionLocation();
         onClickNext();
         initComponents();
-        connectBluetooth();
-
     }
 
     private void onClickNext() {
@@ -64,12 +62,5 @@ public class MainActivityFirst extends AppCompatActivity {
         MyAdapter adapter = new MyAdapter(this, MapsActivity.arrayList);
         listView.setAdapter(adapter);
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-    }
-
-    private void connectBluetooth() {
-        if (!bluetoothAdapter.isEnabled()){
-            Intent intentOne = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(intentOne, 1001);
-        }
     }
 }

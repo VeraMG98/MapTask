@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".activities.MapsActivity">
 
@@ -66,18 +67,23 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="0.5"
+            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/button_puls"
                 android:src="@drawable/ic_action_puls"
-                android:background="#F44336"
-                android:padding="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/puls_view"
+                android:text="@string/metrs"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
 
 
@@ -121,6 +127,16 @@
 
         </LinearLayout>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_puls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_action_puls_holo_dark"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_above="@id/lv"
+            android:layout_marginEnd="20dp"
+            tools:ignore="RtlHardcoded,VectorDrawableCompat"/>
     </RelativeLayout>
 
 </LinearLayout>

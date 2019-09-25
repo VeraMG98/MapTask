@@ -133,18 +133,7 @@ public final class BandState {
         mUpdateTime = System.currentTimeMillis();
     }
 
-//    public synchronized void setHeartContinuousMonitor(boolean enable) {
-//        mState = (mState & (~HEART_MONITOR)) | (enable ? HEART_MONITOR : 0);
-//        mUpdateTime = System.currentTimeMillis();
-//    }
-//
-//    public synchronized void setHeartPing(boolean enable) {
-//        mState = (mState & (~HEART_PING)) | (enable ? HEART_PING : 0);
-//        mUpdateTime = System.currentTimeMillis();
-//    }
-
     public String toString() {
-        // TODO
         return String.format("%9s", Integer.toBinaryString(mState)).replace(' ', '0');
     }
 

@@ -1,4 +1,4 @@
-package in.wangziq.fitnessrecorder;
+package in.wangziq.fitnessrecorder.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import in.wangziq.fitnessrecorder.Models.MyModel;
+import in.wangziq.fitnessrecorder.R;
 
 public class MyAdapter extends BaseAdapter {
     private ArrayList<MyModel> listRes;

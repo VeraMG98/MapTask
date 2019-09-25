@@ -33,8 +33,8 @@
     <string name="switch_acceleration_on">Live acceleration measurement on</string>
     <string name="switch_acceleration_off">Live acceleration measurement off</string>
 
-    <string name="label_fitness_recorder">Fitness Recorder</string>
-    <string name="label_pair_band">Pair My Band</string>
+    <string name="label_fitness_recorder">Мой пульс</string>
+    <string name="label_pair_band">Поиск устройств</string>
     <string name="label_export_data">Export Data</string>
     <string name="label_heart_rate">Heart rate</string>
     <string name="label_acceleration">Acceleration</string>
@@ -42,7 +42,7 @@
     <string name="label_table_heart_rate">Heart rate</string>
     <string name="label_table_acceleration">Acceleration</string>
 
-    <string name="item_pair_band">Pair my band</string>
+    <string name="item_pair_band">Поиск Mi Band</string>
     <string name="item_export">Export data</string>
     <string name="item_scan">Scan</string>
     <string name="item_stop_scan">Stop Scanning</string>
@@ -51,6 +51,6 @@
     <string name="results">Результаты</string>
     <string name="title_activity_maps">Map</string>
     <string name="todo">TODO</string>
-    <string name="metrs">m</string>
+    <string name="metrs">0 m</string>
 
 </resources>

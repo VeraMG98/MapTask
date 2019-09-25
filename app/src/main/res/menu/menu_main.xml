@@ -7,9 +7,4 @@
         android:title="@string/item_pair_band"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/export_data"
-        android:title="@string/item_export"
-        app:showAsAction="never" />
-
 </menu>

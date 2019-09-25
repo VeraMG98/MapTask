@@ -1,4 +1,4 @@
-package in.wangziq.fitnessrecorder;
+package in.wangziq.fitnessrecorder.Models;
 
 public class MyModel {
         String time;

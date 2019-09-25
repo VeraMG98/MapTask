@@ -10,7 +10,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import in.wangziq.fitnessrecorder.MyModel;
+import in.wangziq.fitnessrecorder.Models.MyModel;
 
 public class DBhelper extends SQLiteOpenHelper implements DBInterface {
 

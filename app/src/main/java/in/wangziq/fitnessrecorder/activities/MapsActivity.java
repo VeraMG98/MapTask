@@ -8,10 +8,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -31,7 +31,7 @@ import java.util.Locale;
 
 import in.wangziq.fitnessrecorder.DB.DBhelper;
 import in.wangziq.fitnessrecorder.GetLocation.MyLocation;
-import in.wangziq.fitnessrecorder.MyModel;
+import in.wangziq.fitnessrecorder.Models.MyModel;
 import in.wangziq.fitnessrecorder.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -52,7 +52,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     DBhelper dBhelper;
     MyModel model = new MyModel();
     Marker currentMarker = null;
-    ImageView buttonPuls;
+    static TextView pusl;
+    FloatingActionButton pulsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         runTimer();
     }
 
-
+    public static void update (String str) {
+        pusl.setText(str);
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -172,7 +175,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 modelArrayList.add(model);
                 arrayList = dBhelper.getAllNewsItems();
                 markers.clear();
-                Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+                Intent intent = new Intent(MapsActivity.this, MainActivityFirst.class);
                 startActivity(intent);
                 finish();
             }
@@ -180,7 +183,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void onClickPuls() {
-        buttonPuls.setOnClickListener(new View.OnClickListener() {
+        pulsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapsActivity.this, MainActivity.class);
@@ -232,12 +235,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void initialiseViewsAndComponents() {
+        pusl = findViewById(R.id.puls_view);
         textViewTime = findViewById(R.id.timer_view);
         textViewDist = findViewById(R.id.distanse_view);
         buttonStop = findViewById(R.id.button_stop);
         buttonStart = findViewById(R.id.start_pause);
         dBhelper = new DBhelper(this);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        buttonPuls = findViewById(R.id.button_puls);
+        pulsButton = findViewById(R.id.button_puls);
     }
 }
